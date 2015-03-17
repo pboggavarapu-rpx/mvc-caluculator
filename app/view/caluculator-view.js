@@ -8,8 +8,8 @@ function CaluculatorView(model) {
       mainDiv.id = that._model.name;
       document.getElementById('container').appendChild(mainDiv);
 
-      var screenBox =  new ScreenController(that._model);
-      var operators =  new OperatorController(that._model);
-      var numbers =  new NumberController(that._model);
+      var screenBox =  new ScreenController(that._model.name, mainDiv);
+      var operators =  new OperatorController(that._model.result, mainDiv);
+      var numbers =  new NumberController(that._model.inputString, mainDiv);
     }();
 };

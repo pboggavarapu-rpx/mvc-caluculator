@@ -1,24 +1,23 @@
-function NumberController(calcModel) {
-    this._calcModel = calcModel;
+// creates a operator button
+function NumberController(calcModelInputString, mainDiv) {
+    this._calcModelInputString = calcModelInputString;
+    this._mainDiv = mainDiv;
     var that = this;
 
-        var __construct =function(){
+    var __construct =function(){
 
-        var div = document.createElement('div');
-        div.className = 'num-block';
-        document.getElementsByClassName("page-body")[0].appendChild(div);
-        nums = ''
-        nums = nums + '<button TYPE="button" VALUE="AC">AC</button>'
-        nums = nums + '<button TYPE="button" VALUE=".">.</button>'
-        var div = document.getElementsByClassName('num-block')[0];
-        div.innerHTML = nums;
+        var numBlock = document.createElement('div');
+        numBlock.className = 'num-block';
+        that._mainDiv.appendChild(numBlock);
 
-        for (i = 0; i <= 9; i += 1) {
-          var model = new NumberBtnModel(i)
-
-          var view = new NumberView(model);
+        nums = ["AC",".",0,1,2,3,4,5,6,7,8,9]
+        for (i = 0; i < nums.length; i += 1) {
+          model = new NumberBtnModel(nums[i])
+          view = new NumberView(model);
+          viewButton =  view.getValue();
+          numBlock.appendChild(viewButton);
+          viewButton.addEventListener("click", function(x){return function(){that._calcModelInputString(x);}}(model), false);
         }
-        document.getElementById(that._calcModel.getName()).getElementsByClassName('num-block')[0].addEventListener("click", that._calcModel.inputString);
 
     }();
 };

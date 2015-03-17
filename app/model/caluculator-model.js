@@ -40,10 +40,10 @@ function CaluculatorModel(name) {
 
     var that = this;
 
-		this.inputString = function(){
+		this.inputString = function(model){
 			that.screenBoard = that.screenModel.getValue();
 		  var screenVal = that.screenModel.getValue();
-		  var currentChar = event.target.value;
+		  var currentChar = model.value;
 		  if(currentChar == "AC")
 		  	that.reset();
 		  else{
@@ -58,15 +58,14 @@ function CaluculatorModel(name) {
 
 		};
 
-		this.result = function(){
-			  that.screenBoard = this.parentElement.getElementsByClassName("screen")[0]
+		this.result = function(model){
 				var screenVal = that.screenModel.getValue();
 
 				// try
 				// {
 
 			  	if(that.operatorOne == false && screenVal.length > 0){
-						that.operator = event.target.value;
+						that.operator = model.value;
 						if(that.operator == "="){
 			        screenVal = that.firstVal;
 						}
@@ -82,9 +81,9 @@ function CaluculatorModel(name) {
 			      console.log(that.operator);
 			      if(that.operator != "="){
 			        that.firstVal = calculator.calc(that.firstVal, screenVal, that.operator);
-              that.operatorOne = true;
 			      }
 
+            that.operatorOne = false;
 			      that.operator = event.target.value;
 			      console.log(that.firstVal);
 			      console.log("-----------");

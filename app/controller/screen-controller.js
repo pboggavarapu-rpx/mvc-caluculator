@@ -1,8 +1,8 @@
-function ScreenController(calcModel) {
+function ScreenController(calcName, mainDiv) {
   var that = this;
 
 	var __construct =function(){
-    var screenView = ScreenView(calcModel);
+    var screenView = ScreenView(calcName, mainDiv);
 	}();
 
 };
